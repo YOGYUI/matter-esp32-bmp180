@@ -40,8 +40,7 @@ bool CBarometer::set_pressure_measurement_min_measured_value(int16_t value)
     esp_matter_attr_val_t val = esp_matter_nullable_int16(value);
     esp_err_t ret = esp_matter::attribute::set_val(attribute, &val);
     if (ret != ESP_OK) {
-        GetLogger(eLogType::Error)->Log("Failed to set MinMeasuredValue attribute value (ret: %d)", ret);
-        return false;
+        GetLogger(eLogType::Warning)->Log("Failed to set MaxMeasuredValue attribute value (ret: %d)", ret);
     }
 
     return true;
