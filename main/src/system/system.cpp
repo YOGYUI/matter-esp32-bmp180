@@ -426,13 +426,15 @@ void CSystem::task_timer_function(void *param)
 
             current_tick_us = esp_timer_get_time();
             if (current_tick_us - last_tick_us >= MEASURE_PERIOD_US) {
-                GetBmp180Ctrl()->read_measurement(&pressure);  // unit: Pa
-                dev = obj->find_device_by_endpoint_id(1);
-                if (dev) {
-                    dev->update_measured_value_pressure(pressure);
+                if (GetBmp180Ctrl()->read_measurement(&pressure)) {  // unit: Pa
+                    dev = obj->find_device_by_endpoint_id(1);
+                    if (dev) {
+                        dev->update_measured_value_pressure(pressure);
+                    }
+                    double altitude = GetBmp180Ctrl()->calculate_absolute_altutide((int32_t)pressure);
+                    GetLogger(eLogType::Info)->Log("Pressure: %g Pa (Altitude: %g m)", pressure, altitude);
                 }
                 last_tick_us = current_tick_us;
-                GetLogger(eLogType::Info)->Log("Pressure: %g Pa", pressure);
             }
         }
 
