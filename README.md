@@ -9,9 +9,9 @@ Software (Matter)
 ---
 1개의 Endpoint가 아래와 같이 생성된다.
 1. Endpoint ID 1
-    Device Type: Pressure Sensor (Classification ID: `0x0305`)
+    Device Type: Pressure Sensor (Classification ID: `0x0305`) <br>
     [Clusters]
-    - Pressure Measurement (Cluster ID: `0x0403`)
+    - Pressure Measurement (Cluster ID: `0x0403`) <br>
         [Attributes]
         - Measured Value (Attribute ID: `0x0000`)
         - Min Measured Value (Attribute ID: `0x0001`)
